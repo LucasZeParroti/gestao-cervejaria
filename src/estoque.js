@@ -118,7 +118,7 @@ export function criarModuloEstoque({ supabase, getCervejaria, getUsuario, escape
   async function dashboardHtml() {
     await carregar()
     const lista = itens.filter(x => x.categoria === 'Chopp').slice(0, 10)
-    return `<div class="card stock-dashboard"><div class="section-head"><h3>🍺 Estoque de chope</h3><button class="link" onclick="go('stock')">Ver estoque</button></div><div class="preview">${lista.map(x => `<div class="row"><div class="grow"><b>${emoji(x)} ${escapeHtml(x.nome)}</b><small>Reservado: ${n(x.quantidade_reservada)} ${unidadeLabel(x.unidade)}</small></div><b>${disponivel(x)} ${unidadeLabel(x.unidade)} disponíveis</b></div>`).join('') || empty()}</div><small>Exibindo até 10 itens</small></div>`
+    return `<div class="card stock-dashboard"><div class="section-head"><h3>🍺 Estoque de chope</h3><button class="link" onclick="go('stock')">Ver estoque</button></div><div class="preview">${lista.map(x => `<div class="row"><div class="grow"><b>${emoji(x)} ${escapeHtml(x.nome)}</b><small>Reservado: ${n(x.quantidade_reservada)} ${unidadeLabel(x.unidade)}</small>${x.observacao?`<small class="stock-dashboard-note">📝 ${escapeHtml(x.observacao)}</small>`:''}</div><b>${disponivel(x)} ${unidadeLabel(x.unidade)} disponíveis</b></div>`).join('') || empty()}</div><small>Exibindo até 10 itens</small></div>`
   }
   return { abrir, dashboardHtml }
 }
