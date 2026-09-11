@@ -20,3 +20,40 @@ h1,h2,h3,h4,.head h1,.card h2,.card h3,.stock-card h3,.receita-card h2,.recipe-v
 .stock-tabs button.on{color:#111827!important}
 :root[data-theme="escuro"] .stock-tabs button,:root[data-theme="escuro"] .stock-tabs button:not(.on),:root[data-theme="escuro"] .stock-card-head small,:root[data-theme="escuro"] .stock-card small{color:#fff!important}
 :root[data-theme="escuro"] .stock-tabs button.on{color:#111827!important;background:#fbbf24!important}
+
+/* Evita que a barra inferior cubra Salvar e Cancelar no celular */
+@media (max-width: 720px) {
+  .modalbg,
+  .stock-modal-bg {
+    align-items: flex-start !important;
+    overflow-y: auto !important;
+    padding-top: 12px !important;
+    padding-bottom: calc(92px + env(safe-area-inset-bottom)) !important;
+  }
+
+  .modal,
+  .stock-modal,
+  .recipe-modal {
+    max-height: calc(100dvh - 96px - env(safe-area-inset-bottom)) !important;
+    overflow-y: auto !important;
+    overscroll-behavior: contain;
+    scroll-padding-bottom: calc(110px + env(safe-area-inset-bottom));
+  }
+
+  .modalactions,
+  .stock-modal .modalactions,
+  .recipe-modal footer {
+    position: sticky;
+    bottom: 0;
+    z-index: 8;
+    margin-left: -2px;
+    margin-right: -2px;
+    padding: 12px 2px calc(12px + env(safe-area-inset-bottom));
+    background: var(--ui-card) !important;
+    border-top: 1px solid var(--ui-border);
+  }
+
+  .recipe-body {
+    padding-bottom: 24px !important;
+  }
+}
